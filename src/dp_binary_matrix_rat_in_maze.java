@@ -1,9 +1,36 @@
+/*
+A Maze is given as N*N binary matrix of blocks where source block is the upper
+left most block i.e., maze[0][0] and destination block is lower rightmost block
+i.e., maze[N-1][N-1]. A rat starts from source and has to reach destination.
+The rat can move only in two directions: forward and down.
 
+In the maze matrix, 0 means the block is dead end and 1 means the block can be
+used in the path from source to destination.
+
+Note that this is a simple version of the typical Maze problem.
+For example, a more complex version can be that the rat can move in 4 directions
+and a more complex version can be with limited number of moves.
+---
+The following is binary matrix representation of a maze.
+    {1, 0, 0, 0}
+    {1, 1, 0, 1}
+    {0, 1, 0, 0}
+    {1, 1, 1, 1}
+
+And the following is the solution matrix (output) for the above input matrx.
+    {1, 0, 0, 0}
+    {1, 1, 0, 0}
+    {0, 1, 0, 0}
+    {0, 1, 1, 1}
+
+All enteries in solution path are marked as 1.
+
+*/
 public class dp_binary_matrix_rat_in_maze {
-	// Visualization: https://www.cs.bu.edu/teaching/alg/maze/
-	// Rat in Maze (2 Directions): http://www.geeksforgeeks.org/backttracking-set-2-rat-in-a-maze/
-	// Rat in Maze (4 Directions): http://techlovejump.com/rat-in-a-maze-in-java/
-	
+    // Visualization: https://www.cs.bu.edu/teaching/alg/maze/
+    // Rat in Maze (2 Directions): http://www.geeksforgeeks.org/backttracking-set-2-rat-in-a-maze/
+    // Rat in Maze (4 Directions): http://techlovejump.com/rat-in-a-maze-in-java/
+
     final int N = 4;
  
     /* A utility function to print solution matrix sol[N][N] */
@@ -31,11 +58,10 @@ public class dp_binary_matrix_rat_in_maze {
        this function prints one of the feasible solutions.*/
     boolean solveMaze(int maze[][])
     {
-        int sol[][] = {{0, 0, 0, 0},
-            {0, 0, 0, 0},
-            {0, 0, 0, 0},
-            {0, 0, 0, 0}
-        };
+        int sol[][] = { {0, 0, 0, 0},
+                        {0, 0, 0, 0},
+                        {0, 0, 0, 0},
+                        {0, 0, 0, 0} };
  
         if (solveMazeUtil(maze, 0, 0, sol) == false)
         {
@@ -81,11 +107,11 @@ public class dp_binary_matrix_rat_in_maze {
  
     public static void main(String args[])
     {
-    	dp_binary_matrix_rat_in_maze rat = new dp_binary_matrix_rat_in_maze();
+        dp_binary_matrix_rat_in_maze rat = new dp_binary_matrix_rat_in_maze();
         int maze[][] = {{1, 1, 0, 0},
-            {1, 1, 0, 1},
-            {0, 1, 0, 0},
-            {1, 1, 1, 1}
+                        {1, 1, 0, 1},
+                        {0, 1, 0, 0},
+                        {1, 1, 1, 1}
         };
         
         rat.solveMaze(maze);
