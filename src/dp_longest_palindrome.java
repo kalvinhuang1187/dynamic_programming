@@ -1,3 +1,6 @@
+/*
+Given a string S, find the longest palindromic substring.
+*/
 
 public class dp_longest_palindrome {
 	// Time complexity: O( n^2 )
@@ -27,14 +30,16 @@ public class dp_longest_palindrome {
         	}
         }
           
-        // Check for lengths greater than 2. pal_len is length of subtring
+        // Check for lengths greater than 2. pal_len is length of substring
         for (int pal_len = 3; pal_len <= n; pal_len++) {
         	// Fix the starting index i
         	for (int i = 0; i < n-pal_len+1; i++) {
         		// Get the ending index of substring from starting index i and length pal_len
         		int j = i+pal_len-1;
         		
-        		// checking for sub-string from i index to j index, if str[i+1] to str[j-1] is a palindrome
+            // checking for palindrome from i index to j index
+            // palindrome[i+1][j-1] is checking between starting and ending char is a palpindrome
+            // ex: (1,5) => "anana", palindrome[i+1][j-1] is checking if "nan" is already T
         		if (s.charAt(i) == s.charAt(j) && palindrome[i+1][j-1]) {
         			palindrome[i][j] = true; 
         			palindromeBeginsAt = i;
@@ -50,18 +55,19 @@ public class dp_longest_palindrome {
         
         /*
          * example: "banana"
-         * grid:		0	1   2   3   4   5
-         * 			0   T	F	F	F	F	F
-         * 			1 	F	T	F	T	F	T
-         * 			2	F	F	T	F	T	F
-         * 			3	F	F	F	T	F	T
-         * 			4	F	F	F	F	T	F
-         * 			5	F	F	F	F	F	T
+         * grid:    0   1   2   3   4   5
+         *      0   T   F   F   F   F   F
+         *      1   F   T   F   T   F   T
+         *      2   F   F   T   F   T   F
+         *      3   F   F   F   T   F   T
+         *      4   F   F   F   F   T   F
+         *      5   F   F   F   F   F   T
          * 
          * how to read the table:
          * vertical axis(y) is char starting location
          * horizontal axis(x) is looking at palindrome up to that char position
          * ex (3,5): starting at char 3 (a) going up to char 5 (a), is "ana" a palindrome, T
+         * we are really looking above the diagonal axis. It is impossible for anythign below that to be true
          */
     }
 }
